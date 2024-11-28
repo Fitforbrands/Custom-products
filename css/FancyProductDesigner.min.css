@@ -1214,6 +1214,7 @@ input.clr-color:focus {
   display: flex;
   flex-flow: row wrap;
   max-width: 100%;
+  width: 800px;
   position: relative;
   color: var(--fpd-text-color);
 }

@@ -4,9 +4,41 @@ body {
 }
 
 body > .container {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+
   max-width: 1200px;
   margin: auto;
-  padding: 80px 10px;
+  padding: 40px 10px;
+}
+
+@media (max-width: 800px) {
+  body > .container {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.cotizador {
+  padding-left: 30px;
+  padding-right: 30px;
+  font-size: 14px;
+  background-color: #ebe4e4;
+}
+
+.cotizador h2 {
+  text-align: center;
+}
+
+.cotizador button {
+  background-color: black;
+  color: white;
+  padding: 10px;
+  align-content: center;
+
+  margin: 10px 0px 30px 0px;
+  width: 100%;
 }
 
 .demo-btn {
@@ -29,7 +61,7 @@ body > .container {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 70px;
+  padding-top: 30px;
 }
 
 .header img {
