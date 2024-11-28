@@ -1,11 +1,11 @@
 :root {
-  --fpd-primary-color: #485563;
+  --fpd-primary-color: #232323;
   --fpd-primary-fg-color: #fff;
   --fpd-secondary-color: #029eeb;
   --fpd-secondary-fg-color: #fff;
   --fpd-light-bg-color: #f6f6f6;
   --fpd-light-grey-color: #ebebeb;
-  --fpd-dark-grey-color: #989898;
+  --fpd-dark-grey-color: #232323;
   --fpd-red-color: #bd081c;
   --fpd-scrollbar-track-color: var(--fpd-light-bg-color);
   --fpd-scrollbar-thumb-color: var(--fpd-dark-grey-color);
