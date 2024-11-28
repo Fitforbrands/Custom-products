@@ -82,12 +82,12 @@
               }
             },
             {
-              "title": "Design Me",
-              "source": "Design Me",
+              "title": "prowork",
+              "source": "prowork",
               "type": "text",
               "parameters": {
                 "left": 300,
-                "top": 330,
+                "top": 230,
                 "originX": "center",
                 "originY": "center",
                 "z": -1,

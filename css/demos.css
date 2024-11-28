@@ -23,3 +23,15 @@ body > .container {
 .demo-btn:hover {
   opacity: 0.8;
 }
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 70px;
+}
+
+.header img {
+  width: 200px;
+}
