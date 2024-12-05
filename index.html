@@ -102,11 +102,11 @@
               },
             },
           ],
-          fileServerURL: "https://prowork-arg.netlify.app/img/", //enter the url to the file-handler.php, see https://github.com/radykal/fpd-js-server
+          fileServerURL: "https://prowork-arg.netlify.app/img/",
           facebookAppId: "",
           instagramClientId: "",
           instagramRedirectUri: "./data/html/instagram_auth.html",
-          instagramTokenUri: "", //enter the url to the instagram-token.php, see https://github.com/radykal/fpd-js-server
+          instagramTokenUri: "",
           colorPickerPalette: [
             "#000",
             "#f4cccc",
@@ -124,22 +124,50 @@
           pixabayApiKey: "",
           pixabayLang: "en",
           pixabayHighResImages: false,
-          elementParameters: {},
+
+          elementParameters: {
+            printingBox: true,
+            printingBoxMode: "limitModify",
+          },
           customImageParameters: {
             removable: true,
             draggable: true,
             resizable: true,
             autoCenter: true,
-            price: 10,
-            maxSize: 10,
-            autoSelect: true,
-            advancedEditing: true,
+            boundingBoxMode: "limitModify",
+            boundingBox: {
+              x: 200,
+              y: 200,
+              width: 200,
+              height: 300,
+            },
           },
           customTextParameters: {
             autoCenter: true,
             draggable: true,
             removable: true,
             colors: true,
+            boundingBoxMode: "limitModify",
+            boundingBox: {
+              x: 200,
+              y: 200,
+              width: 200,
+              height: 300,
+            },
+          },
+          // Solo agregamos esta configuración
+          printingBox: {
+            left: 100,
+            top: 100,
+            width: 200,
+            height: 300,
+            visibility: true,
+            style: {
+              strokeWidth: 2,
+              stroke: "#000000",
+              strokeDashArray: [5, 5],
+              fill: "transparent",
+            },
           },
         };
 
