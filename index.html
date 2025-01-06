@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,6 +19,7 @@
     />
     <script src="./js/fabric-5-3-1.min.js"></script>
     <script src="./js/FancyProductDesigner.min.js"></script>
+    <script src="./js/translations.js"></script>
   </head>
 
   <body>
@@ -60,121 +61,121 @@
       </div>
 
       <script>
-        const appOptions = {
-          productsJSON: "product.json",
-          designsJSON: "design-categories.json",
-
-          mainBarModules: [
-            "products",
-            "images",
-            "text",
-            "designs",
-            "manage-layers",
-            "text-layers",
-            "save-load",
-          ],
-          fonts: [
-            { name: "Lobster", url: "google" },
+        document.addEventListener("DOMContentLoaded", function () {
+          const fpd = new FancyProductDesigner(
+            document.getElementById("fpd-target"),
             {
-              name: "Aller",
-              url: "fonts/Aller.ttf",
-              variants: {
-                n7: "fonts/Aller__bold.ttf",
-                i4: "fonts/Aller__italic.ttf",
-                i7: "fonts/Aller__bolditalic.ttf",
-              },
-            },
-            { name: "Pacifico", url: "fonts/Pacifico.ttf" },
-          ],
-          textTemplates: [
-            {
-              text: "Text Template Content",
-              properties: {
-                fontSize: 30,
-                fontFamily: "Lobster",
-              },
-            },
-            {
-              text: "Another Text Template",
-              properties: {
-                fontSize: 50,
-                fontFamily: "Pacifico",
-              },
-            },
-          ],
-          fileServerURL: "https://prowork-arg.netlify.app/img/",
-          facebookAppId: "",
-          instagramClientId: "",
-          instagramRedirectUri: "./data/html/instagram_auth.html",
-          instagramTokenUri: "",
-          colorPickerPalette: [
-            "#000",
-            "#f4cccc",
-            "#fce5cd",
-            "#fff2cc",
-            "#d9ead3",
-            "#d0e0e3",
-            "#cfe2f3",
-            "#d9d2e9",
-            "#ead1dc",
-            "#5f27cd",
-            "#222f3e",
-            "#10ac84",
-          ],
-          pixabayApiKey: "",
-          pixabayLang: "en",
-          pixabayHighResImages: false,
+              productsJSON: "product.json",
+              designsJSON: "design-categories.json",
 
-          elementParameters: {
-            printingBox: true,
-            printingBoxMode: "limitModify",
-          },
-          customImageParameters: {
-            removable: true,
-            draggable: true,
-            resizable: true,
-            autoCenter: true,
-            boundingBoxMode: "limitModify",
-            boundingBox: {
-              x: 200,
-              y: 200,
-              width: 200,
-              height: 300,
-            },
-          },
-          customTextParameters: {
-            autoCenter: true,
-            draggable: true,
-            removable: true,
-            colors: true,
-            boundingBoxMode: "limitModify",
-            boundingBox: {
-              x: 200,
-              y: 200,
-              width: 200,
-              height: 300,
-            },
-          },
-          // Solo agregamos esta configuración
-          printingBox: {
-            left: 100,
-            top: 100,
-            width: 200,
-            height: 300,
-            visibility: true,
-            style: {
-              strokeWidth: 2,
-              stroke: "#000000",
-              strokeDashArray: [5, 5],
-              fill: "transparent",
-            },
-          },
-        };
+              mainBarModules: [
+                "products",
+                "images",
+                "text",
+                "designs",
+                "manage-layers",
+                "text-layers",
+                "save-load",
+              ],
+              fonts: [
+                { name: "Lobster", url: "google" },
+                {
+                  name: "Aller",
+                  url: "fonts/Aller.ttf",
+                  variants: {
+                    n7: "fonts/Aller__bold.ttf",
+                    i4: "fonts/Aller__italic.ttf",
+                    i7: "fonts/Aller__bolditalic.ttf",
+                  },
+                },
+                { name: "Pacifico", url: "fonts/Pacifico.ttf" },
+              ],
+              textTemplates: [
+                {
+                  text: "Text Template Content",
+                  properties: {
+                    fontSize: 30,
+                    fontFamily: "Lobster",
+                  },
+                },
+                {
+                  text: "Another Text Template",
+                  properties: {
+                    fontSize: 50,
+                    fontFamily: "Pacifico",
+                  },
+                },
+              ],
+              fileServerURL: "https://prowork-arg.netlify.app/img/",
+              facebookAppId: "",
+              instagramClientId: "",
+              instagramRedirectUri: "./data/html/instagram_auth.html",
+              instagramTokenUri: "",
+              colorPickerPalette: [
+                "#000",
+                "#f4cccc",
+                "#fce5cd",
+                "#fff2cc",
+                "#d9ead3",
+                "#d0e0e3",
+                "#cfe2f3",
+                "#d9d2e9",
+                "#ead1dc",
+                "#5f27cd",
+                "#222f3e",
+                "#10ac84",
+              ],
+              pixabayApiKey: "",
+              pixabayLang: "en",
+              pixabayHighResImages: false,
 
-        const fpd = new FancyProductDesigner(
-          document.getElementById("fpd-target"),
-          appOptions
-        );
+              elementParameters: {
+                printingBox: true,
+                printingBoxMode: "limitModify",
+              },
+              customImageParameters: {
+                removable: true,
+                draggable: true,
+                resizable: true,
+                autoCenter: true,
+                boundingBoxMode: "limitModify",
+                boundingBox: {
+                  x: 200,
+                  y: 200,
+                  width: 200,
+                  height: 300,
+                },
+              },
+              customTextParameters: {
+                autoCenter: true,
+                draggable: true,
+                removable: true,
+                colors: true,
+                boundingBoxMode: "limitModify",
+                boundingBox: {
+                  x: 200,
+                  y: 200,
+                  width: 200,
+                  height: 300,
+                },
+              },
+              // Solo agregamos esta configuración
+              printingBox: {
+                left: 100,
+                top: 100,
+                width: 200,
+                height: 300,
+                visibility: true,
+                style: {
+                  strokeWidth: 2,
+                  stroke: "#000000",
+                  strokeDashArray: [5, 5],
+                  fill: "transparent",
+                },
+              },
+            }
+          );
+        });
       </script>
     </div>
   </body>
