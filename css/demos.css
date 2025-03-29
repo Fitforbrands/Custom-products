@@ -67,3 +67,30 @@ body > .container {
 .header img {
   width: 200px;
 }
+
+.fpd-wrapper {
+  height: 0px;
+}
+
+.fpd-off-canvas fpd-main-bar .fpd-navigation,
+.fpd-topbar fpd-main-bar .fpd-navigation {
+  background-color: black;
+  color: white;
+}
+
+fpd-main-bar .fpd-navigation > .fpd-nav-item .fpd-nav-icon:before {
+  color: white;
+}
+
+.fpd-container fpd-actions-bar {
+  background-color: black;
+}
+
+.fpd-container fpd-actions-bar .fpd-dropdown-menu.fpd-show {
+  background-color: black;
+}
+
+.fpd-container fpd-actions-bar .fpd-btn,
+.fpd-container fpd-actions-bar .fpd-dropdown-btn {
+  color: white !important;
+}

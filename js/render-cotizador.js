@@ -81,22 +81,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
       fabricCanvas.on("object:modified", (e) => {
         console.log("🔄 Objeto modificado detectado");
-
         const obj = e.target;
         if (!obj) return;
 
-        // ... (cálculo de dimensiones) ...
+        // Cálculo de dimensiones para cualquier objeto (texto o imagen)
+        const dpi = 96;
+        const inchToCm = 2.54;
+        const widthPx = obj.getScaledWidth();
+        const heightPx = obj.getScaledHeight();
+        const widthCm = (widthPx / dpi) * inchToCm;
+        const heightCm = (heightPx / dpi) * inchToCm;
+        const superficie = (widthCm * heightCm).toFixed(2);
 
-        const textoContenido = document.getElementById("textoContenido");
-        const textoHex = document.getElementById("textoHex");
-        const textoPantone = document.getElementById("textoPantone");
-        const textoFuente = document.getElementById("textoFuente");
-        const textoTamano = document.getElementById("textoTamano");
+        // Guardamos en datosProducto
+        window.datosProducto.dimensiones = {
+          ancho: parseFloat(widthCm.toFixed(2)),
+          alto: parseFloat(heightCm.toFixed(2)),
+          superficie: parseFloat(superficie),
+        };
 
+        // Actualizamos la UI de dimensiones
+        dimensionesImagen.textContent = `${widthCm.toFixed(
+          2
+        )} x ${heightCm.toFixed(2)}`;
+        superficieSpan.textContent = superficie;
+
+        // Si es texto => mostrá color, fuente, etc.
         if (obj.type === "textbox" || obj.type === "i-text") {
           const hexColor = (obj.fill || "#000000").toUpperCase();
-          const pantone = window.Pantones.obtenerPantoneDesdeHEX(hexColor);
-          const fuente = obj.fontFamily || "sans-serif";
+          const pantone =
+            window.Pantones.obtenerPantoneDesdeHEX(hexColor) || "N/A";
+          const fuente = obj.fontFamily || "N/A";
           const fontSizePx = obj.fontSize || 16;
 
           // Guardar en datosProducto
@@ -108,19 +123,24 @@ document.addEventListener("DOMContentLoaded", () => {
             tamano: fontSizePx,
           };
 
-          // Mostrar en la UI
+          // Mostrar en interfaz (por ejemplo, tus spans):
           textoContenido.textContent = obj.text;
-          textoHex.textContent = hexColor; // ← color en hex
-          textoPantone.textContent = pantone; // ← pantone
+          textoHex.textContent = hexColor;
+          textoPantone.textContent = pantone;
           textoFuente.textContent = fuente;
-          textoTamano.textContent = fontSizePx + " px";
-
-          console.log(
-            "📝 Texto con Pantone y Hex actualizado:",
-            window.datosProducto.texto
-          );
-        } else {
-          // Si no es texto, limpiamos
+          textoTamano.textContent = `${fontSizePx} px`;
+        }
+        // Si es imagen => limpiar campos de texto
+        else if (obj.type === "image") {
+          window.datosProducto.texto = null;
+          textoContenido.textContent = "-";
+          textoHex.textContent = "-";
+          textoPantone.textContent = "-";
+          textoFuente.textContent = "-";
+          textoTamano.textContent = "-";
+        }
+        // Otros tipos de objetos (shapes, etc.)
+        else {
           window.datosProducto.texto = null;
           textoContenido.textContent = "-";
           textoHex.textContent = "-";
@@ -129,7 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
           textoTamano.textContent = "-";
         }
 
-        // ... (cálculo de dimensiones en la UI) ...
+        // Recalcula precios o lo que corresponda
         actualizarValores();
       });
     }

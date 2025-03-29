@@ -5,19 +5,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
     mainBarModules: ["file", "images", "designs", "text", "manage-layers"],
 
+    elementParameters: {
+      printingBox: true,
+      printingBoxMode: "limitModify",
+    },
     actionsConfiguration: {
-      file: [
-        "info", // Muestra "Info"
-        "download", // Muestra "Descargar"
-        "print", // O lo que necesites
-        "reset", // "Reiniciar"
-        // 'preview-lightbox' queda omitido
+      // Dejamos vacío "file" para que no haya menú desplegable
+      file: [],
+
+      // Ponemos las acciones que queremos en la parte IZQUIERDA (horizontal)
+      left: [
+        "download", // es "descargar"
+        "print", // es "imprimir"
+        "reset", // es "reiniciar"
       ],
-      more: [
-        "zoom", // "Zoom"
-        "ruler", // Muestra toggle "Ruler"
-        // 'guided-tour' queda omitido
-      ],
+      // "zoom" y "ruler" normalmente aparecen a la derecha
+      right: ["zoom", "ruler"],
+      // si lo deseas, aquí puedes agregar más cosas en "center", etc.
+      center: [],
     },
 
     fonts: [
@@ -72,10 +77,6 @@ document.addEventListener("DOMContentLoaded", function () {
     pixabayLang: "en",
     pixabayHighResImages: false,
 
-    elementParameters: {
-      printingBox: true,
-      printingBoxMode: "limitModify",
-    },
     customImageParameters: {
       removable: true,
       draggable: true,
@@ -115,6 +116,18 @@ document.addEventListener("DOMContentLoaded", function () {
         strokeDashArray: [5, 5],
         fill: "transparent",
       },
+      usePrintingBoxAsBounding: "yes", // Importante
+
+      customImageParameters: {
+        boundingBox: "printingBox",
+        boundingBoxMode: "limitModify",
+        // boundingBox: "printingBox" // a veces es necesario en ciertas versiones
+      },
+      customTextParameters: {
+        boundingBox: "printingBox",
+        boundingBoxMode: "limitModify",
+        // boundingBox: "printingBox" // igual que arriba, si tu versión lo requiere
+      },
     },
     actionsConfiguration: {
       file: [
@@ -125,70 +138,29 @@ document.addEventListener("DOMContentLoaded", function () {
       ],
     },
   });
+
   window.fpdInstance = fpd;
 
-  // 🔧 Eliminamos la opción "Preview (Lightbox)"
-  setTimeout(() => {
-    const previewBtn = document.querySelector(
-      '[data-action="preview-lightbox"]'
-    );
-    if (previewBtn) {
-      previewBtn.remove();
-    }
-  }, 500);
+  function removeFPDButtonsByText() {
+    // Seleccionamos todos los <span> dentro de un .fpd-btn
+    const btnSpans = document.querySelectorAll(".fpd-btn span");
+    btnSpans.forEach((span) => {
+      const text = span.textContent.trim().toLowerCase();
+      if (
+        text === "preview lightbox" ||
+        text === "guided tour" ||
+        text === "info"
+      ) {
+        // Buscamos el contenedor padre con clase .fpd-btn
+        const btn = span.closest(".fpd-btn");
+        if (btn) {
+          console.log(`Eliminando botón con texto: ${span.textContent.trim()}`);
+          btn.remove();
+        }
+      }
+    });
+  }
+
+  // Llamamos a la función un poco después que se cargue todo
+  setTimeout(removeFPDButtonsByText, 3000);
 });
-
-// document.addEventListener("DOMContentLoaded", function () {
-//   const fpd = new FancyProductDesigner(document.getElementById("fpd-target"), {
-//     productsJSON: "product.json",
-//     designsJSON: "design-categories.json",
-
-//     mainBarModules: ["images", "designs", "text", "manage-layers"],
-//     sidebarModules: ["zoom", "layers", "upload", "alignment", "undo-redo"],
-
-//     fonts: [
-//       { name: "Lobster", url: "google" },
-//       { name: "Aller", url: "fonts/Aller.ttf" },
-//       { name: "Pacifico", url: "fonts/Pacifico.ttf" },
-//     ],
-
-//     colorPicker: false, // desactiva el picker global
-//     customTextParameters: {
-//       autoCenter: true,
-//       draggable: true,
-//       removable: true,
-//       colors: false,
-//       boundingBoxMode: "limitModify",
-//       boundingBox: {
-//         x: 200,
-//         y: 200,
-//         width: 200,
-//         height: 300,
-//       },
-//     },
-
-//     printingBox: {
-//       left: 100,
-//       top: 100,
-//       width: 200,
-//       height: 300,
-//       visibility: true,
-//       style: {
-//         strokeWidth: 2,
-//         stroke: "#000000",
-//         strokeDashArray: [5, 5],
-//         fill: "transparent",
-//       },
-//     },
-//   });
-
-//   window.fpdInstance = fpd;
-
-//   // 💣 Eliminar menú File y More
-//   setTimeout(() => {
-//     const fileMenu = document.querySelector('[data-action="menu"]');
-//     const moreMenu = document.querySelector('[data-action="more"]');
-//     fileMenu?.remove();
-//     moreMenu?.remove();
-//   }, 500);
-// });
