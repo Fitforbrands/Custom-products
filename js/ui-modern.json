@@ -1,0 +1,43 @@
+{
+  "layout": {
+    "mainBarPosition": "top",
+    "viewsPosition": "left",
+    "toolbarPosition": "right",
+    "stagePosition": "center"
+  },
+  "modules": {
+    "mainBar": [
+      { "title": "SUBIR IMAGEN", "action": "upload" },
+      { "title": "AGREGAR DISEÑO", "action": "designs" },
+      { "title": "AGREGAR TEXTO", "action": "text" },
+      { "title": "CAPAS", "action": "manage-layers" }
+    ],
+    "toolbar": [
+      { "action": "zoom-in" },
+      { "action": "zoom-out" },
+      { "action": "undo" },
+      { "action": "redo" },
+      { "action": "bring-to-front" },
+      { "action": "send-to-back" },
+      { "action": "center-horizontal" },
+      { "action": "center-vertical" }
+    ]
+  },
+  "menu": {
+    "enabled": false
+  },
+  "labels": {
+    "upload": "Subir Imagen",
+    "designs": "Agregar Diseño",
+    "text": "Agregar Texto",
+    "manage-layers": "Capas",
+    "zoom-in": "Acercar",
+    "zoom-out": "Alejar",
+    "undo": "Deshacer",
+    "redo": "Rehacer",
+    "bring-to-front": "Al frente",
+    "send-to-back": "Al fondo",
+    "center-horizontal": "Centrar Horizontal",
+    "center-vertical": "Centrar Vertical"
+  }
+}

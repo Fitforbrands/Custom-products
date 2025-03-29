@@ -4,19 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>prowork</title>
-    <link
-      data-n-head="ssr"
-      rel="icon"
-      type="image/x-icon"
-      href="./img/_18_20231006192301_Favicon.png"
-    />
+
+    <link rel="stylesheet" href="./css/FancyProductDesigner.min.css" />
+    <!-- <link rel="stylesheet" href="./css/FancyProductDesigner.modern.min.css" /> -->
     <link rel="stylesheet" href="css/demos.css" />
 
-    <link
-      href="./css/FancyProductDesigner.min.css"
-      rel="stylesheet"
-      type="text/css"
-    />
     <script src="./js/fabric-5-3-1.min.js"></script>
     <script src="./js/FancyProductDesigner.min.js"></script>
     <script src="./js/translations.js"></script>
@@ -26,26 +18,44 @@
     <div class="header">
       <img src="./img/logo-prowork-vector.png" alt="logo" />
     </div>
+
     <div class="container">
       <div
         id="fpd-target"
-        class="fpd-topbar fpd-shadow-3 fpd-views-inside-right"
+        class="fpd-topbar fpd-views-inside-left fpd-shadow-3"
       ></div>
+
       <div class="cotizador">
         <h2>Cotizador de producto personalizado</h2>
-        <p>Producto: <span>Remera Hombre</span></p>
-        <p>Variante: <span>Negro</span></p>
-        <p>Cantidad: <span>30</span></p>
+        <p>Producto: <span id="productoNombre"></span></p>
+        <p>Variante: <span id="productoVariante"></span></p>
+        <p>Cantidad: <span id="productoCantidad"></span></p>
 
         <h3>Aplicación</h3>
-        <p>Área: <span>Frente</span></p>
-        <p>Técnica: <span>Transfer</span></p>
-        <p>Color: <span>#FFFFFF</span></p>
-        <p>Texto: <span> 1.24 x 1.48 (1.84) cm2</span></p>
-        <p>Fuente: <span>Arial</span></p>
-        <p>Tamaño: <span>38</span></p>
+        <p>Área: <span id="areaAplicacion"></span></p>
 
-        <h3>Días hábiles de producción<span> 4</span></h3>
+        <label for="tecnicaSelect">Técnica:</label>
+        <select
+          id="tecnicaSelect"
+          style="
+            width: 100%;
+            padding: 0.5rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 1rem;
+          "
+        ></select>
+
+        <p>Valor por cm²: <span id="valorCm2"></span></p>
+        <p>Dimensiones imagen: <span id="dimensionesImagen"></span></p>
+        <p>Superficie: <span id="superficie"></span> cm²</p>
+        <p>Contenido: <span id="textoContenido">-</span></p>
+        <p>Color HEX: <span id="textoHex">-</span></p>
+        <p>Pantone: <span id="textoPantone">-</span></p>
+        <p>Fuente: <span id="textoFuente">-</span></p>
+        <p>Tamaño: <span id="textoTamano">-</span></p>
+
+        <h3>Días hábiles de producción: <span id="diasProduccion"></span></h3>
         <p>
           Consideraciones:
           <span
@@ -53,130 +63,21 @@
             cumplidas las condiciones comerciales</span
           >
         </p>
+
         <h3>Valores</h3>
-        <p>Aplicación: <span>$ 28.849</span></p>
-        <p>Producto: <span>$ 1.074.993</span></p>
-        <h3>Total: <span>$ 1.103.842</span></h3>
+        <p>Aplicación: <span id="valorAplicacion"></span></p>
+        <p>Producto: <span id="valorProducto"></span></p>
+        <h3>Total: <span id="valorTotal"></span></h3>
+
         <button>CONFIRMAR DISEÑO</button>
       </div>
-
-      <script>
-        document.addEventListener("DOMContentLoaded", function () {
-          const fpd = new FancyProductDesigner(
-            document.getElementById("fpd-target"),
-            {
-              productsJSON: "product.json",
-              designsJSON: "design-categories.json",
-
-              mainBarModules: [
-                "products",
-                "images",
-                "text",
-                "designs",
-                "manage-layers",
-                "text-layers",
-                "save-load",
-              ],
-              fonts: [
-                { name: "Lobster", url: "google" },
-                {
-                  name: "Aller",
-                  url: "fonts/Aller.ttf",
-                  variants: {
-                    n7: "fonts/Aller__bold.ttf",
-                    i4: "fonts/Aller__italic.ttf",
-                    i7: "fonts/Aller__bolditalic.ttf",
-                  },
-                },
-                { name: "Pacifico", url: "fonts/Pacifico.ttf" },
-              ],
-              textTemplates: [
-                {
-                  text: "Text Template Content",
-                  properties: {
-                    fontSize: 30,
-                    fontFamily: "Lobster",
-                  },
-                },
-                {
-                  text: "Another Text Template",
-                  properties: {
-                    fontSize: 50,
-                    fontFamily: "Pacifico",
-                  },
-                },
-              ],
-              fileServerURL: "https://prowork-arg.netlify.app/img/",
-              facebookAppId: "",
-              instagramClientId: "",
-              instagramRedirectUri: "./data/html/instagram_auth.html",
-              instagramTokenUri: "",
-              colorPickerPalette: [
-                "#000",
-                "#f4cccc",
-                "#fce5cd",
-                "#fff2cc",
-                "#d9ead3",
-                "#d0e0e3",
-                "#cfe2f3",
-                "#d9d2e9",
-                "#ead1dc",
-                "#5f27cd",
-                "#222f3e",
-                "#10ac84",
-              ],
-              pixabayApiKey: "",
-              pixabayLang: "en",
-              pixabayHighResImages: false,
-
-              elementParameters: {
-                printingBox: true,
-                printingBoxMode: "limitModify",
-              },
-              customImageParameters: {
-                removable: true,
-                draggable: true,
-                resizable: true,
-                autoCenter: true,
-                boundingBoxMode: "limitModify",
-                boundingBox: {
-                  x: 200,
-                  y: 200,
-                  width: 200,
-                  height: 300,
-                },
-              },
-              customTextParameters: {
-                autoCenter: true,
-                draggable: true,
-                removable: true,
-                colors: true,
-                boundingBoxMode: "limitModify",
-                boundingBox: {
-                  x: 200,
-                  y: 200,
-                  width: 200,
-                  height: 300,
-                },
-              },
-              // Solo agregamos esta configuración
-              printingBox: {
-                left: 100,
-                top: 100,
-                width: 200,
-                height: 300,
-                visibility: true,
-                style: {
-                  strokeWidth: 2,
-                  stroke: "#000000",
-                  strokeDashArray: [5, 5],
-                  fill: "transparent",
-                },
-              },
-            }
-          );
-        });
-      </script>
     </div>
+
+    <!-- Carga los datos del producto y el cotizador -->
+    <script src="./js/datos-producto.js"></script>
+    <script src="./js/init-product.js"></script>
+    <script src="./js/nearest-color.js"></script>
+    <script src="./js/pantones.js"></script>
+    <script src="./js/render-cotizador.js"></script>
   </body>
 </html>
