@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
       },
     ],
-    fileServerURL: "http://localhost:3000/upload",
+    fileServerURL: "prowork-backend.up.railway.app/upload",
     facebookAppId: "",
     instagramClientId: "",
     instagramRedirectUri: "./data/html/instagram_auth.html",
