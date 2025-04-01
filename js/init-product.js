@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
       },
     ],
-    fileServerURL: "https://prowork-arg.netlify.app/img/",
+    fileServerURL: "http://localhost:3000/upload",
     facebookAppId: "",
     instagramClientId: "",
     instagramRedirectUri: "./data/html/instagram_auth.html",
@@ -140,6 +140,38 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   window.fpdInstance = fpd;
+
+  console.log(
+    "fpd instanceof FancyProductDesigner:",
+    fpd instanceof FancyProductDesigner
+  );
+  console.log("Métodos disponibles en fpd:", fpd);
+
+  fpd.addEventListener("ready", function () {
+    console.log("✅ FancyProductDesigner está listo");
+
+    fpd.addEventListener("element:add", function (data) {
+      if (data.elementType === "image") {
+        const element = data.element;
+        const imgElement = element.$el[0];
+        const base64Image = imgElement.src;
+
+        console.log("📸 Imagen base64 detectada:");
+        console.log(base64Image);
+
+        // 🔁 Simulación de subida: reemplazar con URL pública
+        const fakeURL =
+          "https://via.placeholder.com/300x300.png?text=Subida+Simulada";
+
+        // element.loadElement({
+        //   source: fakeURL,
+        //   title: "Imagen desde URL simulada",
+        // });
+
+        console.log("✅ Imagen reemplazada por una URL simulada");
+      }
+    });
+  });
 
   function removeFPDButtonsByText() {
     // Seleccionamos todos los <span> dentro de un .fpd-btn

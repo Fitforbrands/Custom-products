@@ -68,10 +68,6 @@ body > .container {
   width: 200px;
 }
 
-.fpd-wrapper {
-  height: 0px;
-}
-
 .fpd-off-canvas fpd-main-bar .fpd-navigation,
 .fpd-topbar fpd-main-bar .fpd-navigation {
   background-color: black;
@@ -93,4 +89,14 @@ fpd-main-bar .fpd-navigation > .fpd-nav-item .fpd-nav-icon:before {
 .fpd-container fpd-actions-bar .fpd-btn,
 .fpd-container fpd-actions-bar .fpd-dropdown-btn {
   color: white !important;
+}
+
+.fpd-wrapper {
+  height: 50%;
+}
+
+@media (max-width: 800px) {
+  .fpd-wrapper {
+    height: 100%;
+  }
 }

@@ -106,6 +106,18 @@ document.addEventListener("DOMContentLoaded", () => {
         )} x ${heightCm.toFixed(2)}`;
         superficieSpan.textContent = superficie;
 
+        // Revisamos si es texto
+        if (obj.type === "textbox" || obj.type === "i-text") {
+          // Mostramos el bloque
+          document.getElementById("info-texto").style.display = "block";
+
+          // Actualizamos campos (hexColor, pantone, etc.)
+          // ...
+        } else {
+          // Es imagen u otro => Ocultamos el bloque completo
+          document.getElementById("info-texto").style.display = "none";
+        }
+
         // Si es texto => mostrá color, fuente, etc.
         if (obj.type === "textbox" || obj.type === "i-text") {
           const hexColor = (obj.fill || "#000000").toUpperCase();
